@@ -1,19 +1,20 @@
 Feature: Leaf ground basic authentication
 
-  @textbox
+  @checkbox
   Scenario: Valid Credentials
     Given User on Auth page
     When User click on Home
     And User click on basic auth
 
-  @textbox
+  @checkbox
   Scenario: User is on Dashboard
     Given User Enter Url
     When User click on Browser
     And Click on Alert popup
     Then User Handle the popup
 
-  @textbox
+
+  @leafground
   Scenario: Fill textboxes using data from Excel
     Given User Click on element
     When User enters in the Name field
@@ -28,5 +29,5 @@ Feature: Leaf ground basic authentication
     And User enters dob in the DOB field
     And User enters number in the Number spinner
     And User enters slider in the Slider field
-    Then Click and Confirm Keyboard appears
+  Then Click and Confirm Keyboard appears
 

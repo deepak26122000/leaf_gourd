@@ -2,6 +2,7 @@ package pages;
 
 import hooks.Hook;
 import org.jspecify.annotations.Nullable;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utils.Util;
 
 import java.security.Key;
@@ -57,22 +59,26 @@ public class TextBoxpage {
     @FindBy(id = "j_idt106:j_idt116_input")
     private WebElement dobTextField;
 
+    @FindBy(xpath = "//span[@id='j_idt106:j_idt116']/descendant::span")
+    private WebElement clear;
+
     @FindBy(id = "j_idt106:j_idt118_input")
     private WebElement spinnerTextField;
 
     @FindBy(id = "j_idt106:slider")
     private WebElement sliderField;
 
-    @FindBy(id = "j_idt106:j_idt122")
+    @FindBy(xpath = "//input[@id='j_idt106:j_idt122']")
     private WebElement keyboardField;
 
 
     public TextBoxpage() {
         this.driver = Hook.driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
-    public void textboxLogic(){
+
+    public void textboxLogic() {
         Util.loadProperty();
         String url = Util.getProperty("url");
         Hook.driver.get(url);
@@ -118,30 +124,51 @@ public class TextBoxpage {
     }
 
     public void pressEnterAndgetText() {
-      wait.until(ExpectedConditions.visibilityOf(pressClick)).sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.visibilityOf(pressClick)).sendKeys(Keys.ENTER);
         String errorText = geterror.getText();
         System.out.println(errorText);
     }
 
-    public void confirmLabelPosition(){
-         String before = clickLabel.getAttribute("class");
+    public void confirmLabelPosition() {
+        String before = clickLabel.getAttribute("class");
         clickLabel.click();
-        String after=clickLabel.getAttribute("class");
-        System.out.println("Label Changed? "+!before.equals(after));
+        String after = clickLabel.getAttribute("class");
+        System.out.println("Label Changed? " + !before.equals(after));
     }
 
     public void setDobTextField(String dob) {
         dobTextField.sendKeys("12/26/2000");
         dobTextField.sendKeys(Keys.ENTER);
+        clear.click();
+
     }
-    public void enterSpinnerNum(String num){
+
+    public void enterSpinnerNum(String num) {
         spinnerTextField.sendKeys(num);
+
     }
-    public void enterSliderNum(String num){
+
+    public void enterSliderNum(String num) throws InterruptedException {
+        sliderField.click();
         sliderField.sendKeys(num);
+        String randomValue=sliderField.getAttribute("value");
+        randomValue="width: "+randomValue+"%;";
+        Thread.sleep(2000);
+        WebElement slider=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'ui-slider-range-min')]")));
+        String slidervalue=slider.getAttribute("style");
+        Assert.assertEquals(slidervalue,randomValue);
+        System.out.println("Slider is checked:"+num+" is equal to "+randomValue);
     }
-    public void keyBoardAppearance(){
-        keyboardField.click();
+    public void clickAndConfirm(){
+        WebElement inputdata=wait.until(ExpectedConditions.elementToBeClickable(By.id("j_idt106:j_idt122")));
+        inputdata.click();
+        WebElement keyboard=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'keypad-popup')]")));
+        if(keyboard.isEnabled()){
+            System.out.println("Working");
+        }else{
+            System.out.println("notworking");
+        }
     }
+
 }
 

@@ -51,7 +51,7 @@ public class BrowserPage {
     @FindBy(xpath = "(//span[text()='Show'])[6]")
     private WebElement show7;
 
-    @FindBy(xpath = "(//span[@class='ui-icon ui-icon-closethick'])[3]")
+    @FindBy(xpath = "//span[@id='j_idt88:j_idt112_title']/parent::div/a[1]/span")
     private WebElement minmax;
 
     public BrowserPage() {

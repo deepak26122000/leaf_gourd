@@ -59,12 +59,6 @@ public class ButtonPage {
         PageFactory.initElements(driver,this);
         a=new Actions(driver);
     }
-    public void  openElement(){
-        Util.loadProperty();
-       String url=Util.getProperty("url");
-       driver.get(url);
-
-    }
     public void clickElement(){
     elementLink.click();
     }

@@ -48,4 +48,6 @@ public class AuthPage {
     public void clckBasicAuth() {
         wait.until(ExpectedConditions.visibilityOf(basicAuthLink)).click();
     }
+
+
 }

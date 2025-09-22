@@ -3,13 +3,9 @@ package hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Util;
 
-import java.time.Duration;
 
 public class Hook {
     public static WebDriver driver;
@@ -24,13 +20,13 @@ public class Hook {
         driver.get(url);
     }
 
-//   @After
-//   public void tearDown() {
-//      if (driver != null) {
-//          driver.quit();
-//      }
-//      System.out.println("Browser closed");
-//    }
-   }
+   @After
+   public void tearDown() {
+      if (driver != null) {
+          driver.quit();
+      }
+      System.out.println("Browser closed");
+    }
+  }
 
 

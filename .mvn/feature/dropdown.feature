@@ -1,6 +1,6 @@
 Feature: Automation for Dropdown Course Selection
 
-  @sanity
+  @checkbox
   Scenario: User selects tool, country, city, course, and language
     Given click on the element
     When click on the dropdown

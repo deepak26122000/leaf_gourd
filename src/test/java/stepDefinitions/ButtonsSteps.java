@@ -3,12 +3,13 @@ package stepDefinitions;
 import io.cucumber.java.en.*;
 import pages.ButtonPage;
 
+import static hooks.Hook.driver;
+
 public class ButtonsSteps {
     ButtonPage btnpage;
     @Given("user launch the application")
     public void user_launch_the_application() {
          btnpage=new ButtonPage();
-         btnpage.openElement();
 
     }
 
@@ -26,6 +27,7 @@ public class ButtonsSteps {
     @Then("User should see the page title as Expected Title")
     public void user_should_see_the_page_title_as_expected_title() {
         btnpage.gettitle();
+        driver.navigate().back();
     }
 
     @Then("The Disabled button should be disabled")

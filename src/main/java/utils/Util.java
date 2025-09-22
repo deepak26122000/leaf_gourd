@@ -12,10 +12,10 @@ public class Util {
 
     public static void loadProperty() {
         try {
-                prop = new Properties();
-                FileInputStream fis = new FileInputStream(("/Users/softsuave/IdeaProjects/leafground-table-bdd/config.properties"));
-                prop.load(fis);
-                fis.close();
+            prop = new Properties();
+            FileInputStream fis = new FileInputStream(("/Users/softsuave/IdeaProjects/leafground-table-bdd/config.properties"));
+            prop.load(fis);
+            fis.close();
 
         } catch (Exception e) {
             throw new RuntimeException("Could not load the property ");

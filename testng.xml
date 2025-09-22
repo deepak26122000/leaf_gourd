@@ -2,8 +2,7 @@
 <suite name="leafGround-table-bdd" parallel="false">
     <test name="Cucumber Tests">
         <classes>
-            <class name="runner.AuthRunner"/>
-            <class name="runner.ButtonRunner"/>
+            <class name="runner.LeafGroundRunner"/>
         </classes>
     </test>
 </suite>

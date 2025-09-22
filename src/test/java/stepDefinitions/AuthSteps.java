@@ -5,13 +5,11 @@ import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import hooks.Hook;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
 import pages.AuthPage;
 import pages.BrowserPage;
 import pages.TextBoxpage;
 import utils.Util;
 
-import java.time.Duration;
 
 public class AuthSteps {
     WebDriver driver;
@@ -66,7 +64,6 @@ public class AuthSteps {
     @Given("User Click on element")
     public void inputPage() {
         textpage = new TextBoxpage();
-        textpage.textboxLogic();
         textpage.clickElementandTextBox();
     }
     @When("User enters in the Name field")
@@ -127,11 +124,12 @@ public class AuthSteps {
         textpage.enterSpinnerNum("35");
     }
     @When("User enters slider in the Slider field")
-    public void user_enters_slider_in_the_slider_field() {
+    public void user_enters_slider_in_the_slider_field() throws InterruptedException {
         textpage.enterSliderNum("89");
     }
-    @Then("Click and Confirm Keyboard appears")
-    public void click_and_confirm_keyboard_appears() {
-        textpage.keyBoardAppearance();
+    @When("Click and Confirm Keyboard appears")
+    public void user_confirm()  {
+        textpage.clickAndConfirm();
     }
+
 }
